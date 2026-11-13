@@ -1,0 +1,65 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nada's Desktop</title>
+  <style>
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: #e8d9cf;
+      font-family: Arial, sans-serif;
+      color: #463b37;
+    }
+
+    h1 {
+      text-align: center;
+      margin-top: 80px;
+    }
+
+    p {
+      text-align: center;
+    }
+
+    .desktop {
+      display: flex;
+      justify-content: center;
+      gap: 35px;
+      margin-top: 70px;
+    }
+
+    .folder {
+      cursor: pointer;
+      text-align: center;
+      font-size: 18px;
+    }
+
+    .folder span {
+      font-size: 55px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Welcome to Nada's Desktop! ☕</h1>
+  <p>A little world of films, stories, and creativity.</p>
+
+  <div class="desktop">
+    <div class="folder" onclick="alert('My Films coming soon!')">
+      <span>📁</span>
+      <p>My Films</p>
+    </div>
+
+    <div class="folder" onclick="alert('About Me coming soon!')">
+      <span>🎬</span>
+      <p>About Me</p>
+    </div>
+
+    <div class="folder" onclick="alert('Resume coming soon!')">
+      <span>📄</span>
+      <p>Resume</p>
+    </div>
+  </div>
+</body>
+</html>
