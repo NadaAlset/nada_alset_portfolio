@@ -27,7 +27,44 @@ body, button, input, textarea {
 <section class="window" data-app="welcome" role="dialog" aria-label="Welcome"><div class="window-head"><div class="dots"><button class="close" aria-label="Close"></button><button class="min" aria-label="Minimize"></button><button class="max" aria-label="Bring to front"></button></div><span class="filename">welcome.note</span><span>✧</span></div><div class="window-body welcome"><img class="seal-large seal-image" src="gold-seal.png" alt="Gold N wax seal"><div class="smallcaps">A note for you</div><h2>Oh, hello there!</h2><p>I'm Nada — a filmmaker and storyteller. This little desktop is my home for all the things I've made, learned, and loved along the way.</p><button class="action" data-open="about">Get to know me ♡</button></div></section>
 <section class="window" data-app="about" role="dialog" aria-label="About Me"><div class="window-head"><div class="dots"><button class="close" aria-label="Close"></button><button class="min" aria-label="Minimize"></button><button class="max" aria-label="Bring to front"></button></div><span class="filename">about_nada.note</span><span>✧</span></div><div class="window-body"><div class="about-grid"><img class="portrait" src="portrait.jpg" alt="Portrait of Nada"><div><div class="smallcaps">A little introduction</div><h2>Hi, I'm Nada.</h2><p>I'm a film production student at California State University, Northridge, with a passion for producing, directing, and bringing stories to life.</p><p>My work lives somewhere between thoughtful planning and creative curiosity. I love the people behind every project, the details that make stories memorable, and, of course, a good cup of coffee.</p><div class="goldline"></div><a class="action" href="https://www.linkedin.com/in/nada-alset/" target="_blank" rel="noopener">LinkedIn ↗</a><button class="action secondary" data-open="contact">Say hello →</button></div></div></div></section>
 <section class="window" data-app="contact" role="dialog" aria-label="Contact"><div class="window-head"><div class="dots"><button class="close" aria-label="Close"></button><button class="min" aria-label="Minimize"></button><button class="max" aria-label="Bring to front"></button></div><span class="filename">letters_and_hellos.note</span><span>✧</span></div><div class="window-body"><div class="paper-note"><div class="smallcaps">Correspondence</div><h2>Let's make something beautiful.</h2><p>Have a project, a collaboration, or just want to say hello? I'd love to hear from you.</p><div class="goldline"></div><p><strong>Email:</strong> Coming soon — we'll add your preferred professional address here.</p><a class="action" href="https://www.linkedin.com/in/nada-alset/" target="_blank" rel="noopener">Connect on LinkedIn ↗</a></div></div></section>
-<section class="window" data-app="resume" role="dialog" aria-label="Resume"><div class="window-head"><div class="dots"><button class="close" aria-label="Close"></button><button class="min" aria-label="Minimize"></button><button class="max" aria-label="Bring to front"></button></div><span class="filename">nada_resume.pdf</span><span>✧</span></div><div class="window-body"><div class="smallcaps">Professional portfolio</div><h2>My Resume</h2><p>Producing • Directing • Development • Creative Coordination</p><div class="placeholder">Your resume will live here. Once you share the PDF you'd like to use, we'll add a real <strong>View Resume</strong> and <strong>Download PDF</strong> button. No placeholder file is being passed off as your resume.</div><div class="goldline"></div><button class="action secondary" data-open="contact">Contact me →</button></div></section>
+
+<section class="window" data-app="resume" role="dialog" aria-label="Resume">
+  <div class="window-head">
+    <div class="dots">
+      <button class="close" aria-label="Close"></button>
+      <button class="min" aria-label="Minimize"></button>
+      <button class="max" aria-label="Bring to front"></button>
+    </div>
+    <span class="filename">Nada_Alset_Resume.pdf</span>
+    <span>✧</span>
+  </div>
+
+  <div class="window-body">
+    <div class="smallcaps">Professional portfolio</div>
+    <h2>My Resume</h2>
+    <p>Producing • Directing • Development • Creative Coordination</p>
+
+    <iframe
+      src="Nada_Alset_Resume.pdf"
+      title="Nada Alset Resume"
+      style="width:100%;height:500px;border:1px solid #e0d6c8;border-radius:10px;background:white;">
+    </iframe>
+
+    <div style="margin-top:18px;display:flex;gap:12px;flex-wrap:wrap;">
+      <a class="action" href="Nada_Alset_Resume.pdf" target="_blank" rel="noopener noreferrer">
+        View Full Resume
+      </a>
+
+      <a class="action secondary" href="Nada_Alset_Resume.pdf" download="Nada_Alset_Resume.pdf">
+        Download PDF
+      </a>
+
+      <button class="action secondary" data-open="contact">
+        Contact Me →
+      </button>
+    </div>
+  </div>
+</section>
 <section class="window" data-app="projects" role="dialog" aria-label="My Projects"><div class="window-head"><div class="dots"><button class="close" aria-label="Close"></button><button class="min" aria-label="Minimize"></button><button class="max" aria-label="Bring to front"></button></div><span class="filename">my_projects.folder</span><span>✧</span></div><div class="window-body"><div class="smallcaps">The film collection</div><h2>Stories I've helped tell.</h2><p>Our next chapter: custom film posters, project windows, videos, and behind-the-scenes photographs.</p><div class="project-grid"><div class="project-tile"><div class="poster">Ace of<br>Hearts</div><strong>Ace of Hearts</strong><span>Director</span></div><div class="project-tile"><div class="poster">Motivated<br>By You</div><strong>Motivated By You</strong><span>Producer</span></div><div class="project-tile"><div class="poster">Coming<br>Soon</div><strong>More stories</strong><span>In progress</span></div></div></div></section>
 </main><script>
 let topZ=50;const windows=[...document.querySelectorAll('.window')];function openApp(name){const w=document.querySelector(`.window[data-app="${name}"]`);if(!w)return;w.classList.add('open');focusWin(w)}function focusWin(w){windows.forEach(x=>x.classList.remove('active'));w.classList.add('active');w.style.zIndex=++topZ}document.querySelectorAll('[data-open]').forEach(b=>b.addEventListener('click',()=>openApp(b.dataset.open)));windows.forEach(w=>{w.addEventListener('pointerdown',()=>focusWin(w));w.querySelector('.close').addEventListener('click',()=>w.classList.remove('open'));w.querySelector('.min').addEventListener('click',()=>w.classList.remove('open'));w.querySelector('.max').addEventListener('click',()=>focusWin(w));const head=w.querySelector('.window-head');let drag=null;head.addEventListener('pointerdown',e=>{if(e.target.closest('button')||innerWidth<700)return;focusWin(w);const r=w.getBoundingClientRect();drag={x:e.clientX-r.left,y:e.clientY-r.top};head.setPointerCapture(e.pointerId)});head.addEventListener('pointermove',e=>{if(!drag)return;w.style.left=Math.max(0,Math.min(innerWidth-w.offsetWidth,e.clientX-drag.x))+'px';w.style.top=Math.max(48,Math.min(innerHeight-70,e.clientY-drag.y))+'px'});head.addEventListener('pointerup',()=>drag=null);head.addEventListener('pointercancel',()=>drag=null)});const clock=document.getElementById('clock');clock.textContent=new Date().toLocaleTimeString([],{hour:'numeric',minute:'2-digit'});openApp('welcome');
