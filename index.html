@@ -71,6 +71,26 @@ body, button, input, textarea {
 .window[data-app="contact"] .window-body a:hover {
   color: #A88750;
 }
+
+/* My custom gold cursor */
+@media (pointer: fine) {
+  body, button, a {
+    cursor: url("gold-cursor.png") 2 2, auto;
+  }
+}
+
+/* Gold dust disappearing animation */
+@keyframes goldDustFade {
+  0% {
+    opacity: 0.9;
+    transform: translate(0, 0) scale(1);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(-8px, 12px) scale(0.2);
+  }
+}
 </style></head><body><main class="desktop"><header class="topbar"><div class="brand"><img class="mini-seal seal-image" src="gold-seal.png" alt="Gold N wax seal"><strong>Nada's Golden Archive</strong></div><div class="rightbar"><button data-open="about">About</button><button data-open="contact">Contact</button><button data-open="resume">Resume</button><span id="clock">♡</span></div></header>
 <section class="desktop-title"><div class="eyebrow">A little corner of my world</div><h1>Stories, with<br><em>a golden touch.</em></h1><p>Welcome to my creative desktop. Open a folder, peek into a project, and make yourself at home.</p><div class="signature">with love, Nada ♡</div></section>
 <nav class="icons" aria-label="Desktop folders"><button class="desktop-icon" data-open="about"><span class="folder-art rose"></span><span class="icon-label">About Me</span></button><button class="desktop-icon" data-open="projects"><span class="folder-art"></span><span class="icon-label">My Projects</span></button><button class="desktop-icon" data-open="resume"><span class="folder-art gold"></span><span class="icon-label">Resume</span></button><button class="desktop-icon" data-open="contact"><span class="folder-art sage"></span><span class="icon-label">Contact</span></button></nav>
@@ -171,4 +191,54 @@ body, button, input, textarea {
 <section class="window" data-app="projects" role="dialog" aria-label="My Projects"><div class="window-head"><div class="dots"><button class="close" aria-label="Close"></button><button class="min" aria-label="Minimize"></button><button class="max" aria-label="Bring to front"></button></div><span class="filename">my_projects.folder</span><span>✧</span></div><div class="window-body"><div class="smallcaps">The film collection</div><h2>Stories I've helped tell.</h2><p>Our next chapter: custom film posters, project windows, videos, and behind-the-scenes photographs.</p><div class="project-grid"><div class="project-tile"><div class="poster">Ace of<br>Hearts</div><strong>Ace of Hearts</strong><span>Director</span></div><div class="project-tile"><div class="poster">Motivated<br>By You</div><strong>Motivated By You</strong><span>Producer</span></div><div class="project-tile"><div class="poster">Coming<br>Soon</div><strong>More stories</strong><span>In progress</span></div></div></div></section>
 </main><script>
 let topZ=50;const windows=[...document.querySelectorAll('.window')];function openApp(name){const w=document.querySelector(`.window[data-app="${name}"]`);if(!w)return;w.classList.add('open');focusWin(w)}function focusWin(w){windows.forEach(x=>x.classList.remove('active'));w.classList.add('active');w.style.zIndex=++topZ}document.querySelectorAll('[data-open]').forEach(b=>b.addEventListener('click',()=>openApp(b.dataset.open)));windows.forEach(w=>{w.addEventListener('pointerdown',()=>focusWin(w));w.querySelector('.close').addEventListener('click',()=>w.classList.remove('open'));w.querySelector('.min').addEventListener('click',()=>w.classList.remove('open'));w.querySelector('.max').addEventListener('click',()=>focusWin(w));const head=w.querySelector('.window-head');let drag=null;head.addEventListener('pointerdown',e=>{if(e.target.closest('button')||innerWidth<700)return;focusWin(w);const r=w.getBoundingClientRect();drag={x:e.clientX-r.left,y:e.clientY-r.top};head.setPointerCapture(e.pointerId)});head.addEventListener('pointermove',e=>{if(!drag)return;w.style.left=Math.max(0,Math.min(innerWidth-w.offsetWidth,e.clientX-drag.x))+'px';w.style.top=Math.max(48,Math.min(innerHeight-70,e.clientY-drag.y))+'px'});head.addEventListener('pointerup',()=>drag=null);head.addEventListener('pointercancel',()=>drag=null)});const clock=document.getElementById('clock');clock.textContent=new Date().toLocaleTimeString([],{hour:'numeric',minute:'2-digit'});openApp('welcome');
+
+/* Delicate gold glitter cursor trail */
+
+if (window.matchMedia('(pointer: fine)').matches &&
+    !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+
+  const sparkleColors = [
+    '#D4AF37',
+    '#E8C76A',
+    '#FFF1B8',
+    '#C99B42'
+  ];
+
+  let lastSparkle = 0;
+
+  document.addEventListener('pointermove', function(e) {
+    const now = Date.now();
+
+    if (now - lastSparkle < 35) return;
+    lastSparkle = now;
+
+    for (let i = 0; i < 2; i++) {
+      const sparkle = document.createElement('span');
+
+      const size = Math.random() * 4 + 2;
+      const x = e.clientX + (Math.random() - 0.5) * 15;
+      const y = e.clientY + (Math.random() - 0.5) * 15;
+
+      sparkle.style.cssText = `
+        position: fixed;
+        left: ${x}px;
+        top: ${y}px;
+        width: ${size}px;
+        height: ${size}px;
+        background: ${sparkleColors[
+          Math.floor(Math.random() * sparkleColors.length)
+        ]};
+        border-radius: 50%;
+        box-shadow: 0 0 6px #E8C76A;
+        pointer-events: none;
+        z-index: 99999;
+        animation: goldDustFade 0.7s ease-out forwards;
+      `;
+
+      document.body.appendChild(sparkle);
+
+      setTimeout(() => sparkle.remove(), 700);
+    }
+  });
+}
 </script></body></html>
