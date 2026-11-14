@@ -114,6 +114,51 @@ body, button, input, textarea {
 @media(max-width:700px){.envelope-area{left:9%;top:65px;width:78vw;height:510px}.portrait-letter{width:52%;left:24%;bottom:115px}.portrait-mat img{height:195px}.icons{top:485px!important;grid-template-columns:repeat(2,1fr)!important}.window[data-app="welcome"]{left:6%!important;top:65%!important;width:88vw!important}@keyframes portraitOut{0%{opacity:0;transform:translateY(60px)}10%{opacity:1}100%{opacity:1;transform:translateY(-90px)}}}
 @media(prefers-reduced-motion:reduce){.envelope-flap,.portrait-letter{animation:none!important}.envelope-flap{transform:rotateX(178deg);z-index:2}.portrait-letter{opacity:1;transform:translateY(-105px)}}
 @media(max-width:700px) and (prefers-reduced-motion:reduce){.portrait-letter{transform:translateY(-90px)}}
+
+.sparkling-portfolio {
+  position: relative;
+  display: inline-block;
+  color: #B08A4D;
+  font-weight: 600;
+}
+
+.sparkle {
+  position: absolute;
+  color: #D5AC58;
+  font-size: 11px;
+  pointer-events: none;
+  animation: gentleTwinkle 3s ease-in-out infinite;
+}
+
+.sparkle-one {
+  top: -10px;
+  right: -10px;
+}
+
+.sparkle-two {
+  bottom: -8px;
+  left: -10px;
+  animation-delay: 1s;
+}
+
+.sparkle-three {
+  top: 0;
+  right: -17px;
+  font-size: 8px;
+  animation-delay: 2s;
+}
+
+@keyframes gentleTwinkle {
+  0%, 100% {
+    opacity: 0.25;
+    transform: scale(0.7);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+}
 </style></head><body><main class="desktop"><header class="topbar"><div class="brand"><img class="mini-seal seal-image" src="gold-seal.png" alt="Gold N wax seal"><strong>Nada's Golden Archive</strong></div><div class="rightbar"><button data-open="about">About</button><button data-open="contact">Contact</button><button data-open="resume">Resume</button><span id="clock">♡</span></div></header>
 <section class="desktop-title envelope-area" aria-label="A letter from Nada">
   <div class="envelope-composition"><img class="envelope-closed" src="ivory-envelope.png" alt="" aria-hidden="true">
@@ -125,9 +170,41 @@ body, button, input, textarea {
 </section>
 <nav class="icons" aria-label="Desktop folders"><button class="desktop-icon" data-open="about"><span class="folder-art rose"></span><span class="icon-label">About Me</span></button><button class="desktop-icon" data-open="projects"><span class="folder-art"></span><span class="icon-label">My Projects</span></button><button class="desktop-icon" data-open="resume"><span class="folder-art gold"></span><span class="icon-label">Resume</span></button><button class="desktop-icon" data-open="contact"><span class="folder-art sage"></span><span class="icon-label">Contact</span></button></nav>
 <div class="footnote">✦ Made with care, curiosity & a little bit of movie magic</div><nav class="dock" aria-label="Quick access"><button data-open="welcome" title="Welcome">✧</button><button data-open="about" title="About Me">♡</button><button data-open="projects" title="My Projects">▤</button><button data-open="resume" title="Resume">▧</button><button data-open="contact" title="Contact">✉</button></nav>
-<section class="window" data-app="welcome" role="dialog" aria-label="Welcome"><div class="window-head"><div class="dots"><button class="close" aria-label="Close"></button><button class="min" aria-label="Minimize"></button><button class="max" aria-label="Bring to front"></button></div><span class="filename">welcome.note</span><span>✧</span></div><div class="window-body welcome"><img class="seal-large seal-image" src="gold-seal.png" alt="Gold N wax seal"><div class="smallcaps">A note for you</div><h2>Oh, hello there!</h2><p>I'm Nada — a filmmaker and storyteller. This little desktop is my home for all the things I've made, learned, and loved along the way.</p><button class="action" data-open="about">Get to know me ♡</button></div></section>
-<section class="window" data-app="about" role="dialog" aria-label="About Me"><div class="window-head"><div class="dots"><button class="close" aria-label="Close"></button><button class="min" aria-label="Minimize"></button><button class="max" aria-label="Bring to front"></button></div><span class="filename">about_nada.note</span><span>✧</span></div><div class="window-body"><div class="about-grid"><img class="portrait" src="portrait.jpg" alt="Portrait of Nada"><div><div class="smallcaps">A little introduction</div><h2>Hi, I'm Nada.</h2><p>I'm a film production student at California State University, Northridge, with a passion for producing, directing, and bringing stories to life.</p><p>My work lives somewhere between thoughtful planning and creative curiosity. I love the people behind every project, the details that make stories memorable, and, of course, a good cup of coffee.</p><div class="goldline"></div><a class="action" href="https://www.linkedin.com/in/nada-alset/" target="_blank" rel="noopener">LinkedIn ↗</a><button class="action secondary" data-open="contact">Say hello →</button></div></div></div></section>
 
+<section class="window" data-app="welcome" role="dialog" aria-label="Welcome">
+  <div class="window-head">
+    <div class="dots">
+      <button class="close" aria-label="Close"></button>
+      <button class="min" aria-label="Minimize"></button>
+      <button class="max" aria-label="Bring to front"></button>
+    </div>
+    <span class="filename">welcome.note</span>
+    <span>✧</span>
+  </div>
+
+  <div class="window-body welcome">
+    <img class="seal-large seal-image" src="gold-seal.png" alt="Gold N wax seal">
+
+    <div class="smallcaps">A note for you</div>
+
+    <h2>Oh, hello there!</h2>
+
+    <p>
+      Welcome to my
+      <span class="sparkling-portfolio">
+        portfolio
+        <span class="sparkle sparkle-one">✦</span>
+        <span class="sparkle sparkle-two">✧</span>
+        <span class="sparkle sparkle-three">✦</span>
+      </span>!
+      I'm Nada, and this is my space to share the things
+      I've made and learned along the way.
+    </p>
+
+    <button class="action" data-open="about">Get to know me ♡</button>
+  </div>
+</section>
+<section class="window" data-app="about" role="dialog" aria-label="About Me"><div class="window-head"><div class="dots"><button class="close" aria-label="Close"></button><button class="min" aria-label="Minimize"></button><button class="max" aria-label="Bring to front"></button></div><span class="filename">about_nada.note</span><span>✧</span></div><div class="window-body"><div class="about-grid"><img class="portrait" src="portrait.jpg" alt="Portrait of Nada"><div><div class="smallcaps">A little introduction</div><h2>Hi, I'm Nada.</h2><p>I'm a film production student at California State University, Northridge, with a passion for producing, directing, and bringing stories to life.</p><p>My work lives somewhere between thoughtful planning and creative curiosity. I love the people behind every project, the details that make stories memorable, and, of course, a good cup of coffee.</p><div class="goldline"></div><a class="action" href="https://www.linkedin.com/in/nada-alset/" target="_blank" rel="noopener">LinkedIn ↗</a><button class="action secondary" data-open="contact">Say hello →</button></div></div></div></section>
 <section class="window" data-app="contact" role="dialog" aria-label="Contact">
   <div class="window-head">
     <div class="dots">
