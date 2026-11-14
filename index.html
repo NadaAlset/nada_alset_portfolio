@@ -91,8 +91,38 @@ body, button, input, textarea {
     transform: translate(-8px, 12px) scale(0.2);
   }
 }
+
+/* V5: clean, physically layered envelope with a deliberate opening pause. */
+.envelope-area{position:absolute;left:3.5%;top:130px;width:min(29vw,390px);height:610px;max-width:none;pointer-events:none;z-index:2;overflow:visible}
+.envelope-composition{position:relative;width:100%;height:100%;perspective:1300px;filter:drop-shadow(0 13px 13px rgba(87,60,36,.15))}
+.envelope-closed{position:absolute;left:0;bottom:34px;width:100%;z-index:7;animation:revealEnvelopeLayers .35s 2.5s ease-in forwards;pointer-events:none}
+@keyframes revealEnvelopeLayers{from{opacity:1}to{opacity:0}}
+.envelope-back{position:absolute;left:0;width:100%;bottom:34px;aspect-ratio:832/552;background:linear-gradient(180deg,#fff9ed,#e5cfb1);border:1px solid #d8bb92;border-radius:6px;z-index:1;box-shadow:inset 0 14px 18px #a7815140}
+.envelope-interior{position:absolute;left:1%;bottom:36px;width:98%;aspect-ratio:832/552;z-index:1;pointer-events:none;background:linear-gradient(180deg,#fff9ed,#f4e4ca 65%,#e4cba8);box-shadow:inset 0 14px 22px #8b64394d}
+.envelope-interior:before{content:'';position:absolute;inset:0;background:linear-gradient(145deg,#fff9ee,#e8d5b9);clip-path:polygon(0 0,50% 57%,100% 0);opacity:.7}
+.envelope-front{position:absolute;left:0;width:100%;bottom:34px;z-index:4;filter:drop-shadow(0 -2px 2px rgba(93,65,37,.18)) drop-shadow(0 3px 3px #79553225)}
+.envelope-flap{position:absolute;left:0;width:100%;bottom:34px;z-index:5;transform-origin:50% 2%;backface-visibility:visible;transform-style:preserve-3d;animation:liftEnvelopeFlap 2.1s 2.5s cubic-bezier(.45,.05,.24,1) both;filter:drop-shadow(0 3px 2px #76583a30)}
+.portrait-letter{position:absolute;left:17%;bottom:120px;width:66%;box-sizing:border-box;padding:8px;background:#fffaf0;border:2px solid #c5a56d;box-shadow:0 8px 22px #6e4c3250,inset 0 0 0 4px #f5e8d1;z-index:3;opacity:0;animation:portraitOut 2.0s 4.65s cubic-bezier(.2,.75,.2,1) forwards;will-change:transform}
+.portrait-mat{padding:4px;border:1px solid #c5a56d;background:#f6eddf}
+.portrait-mat img{display:block;width:100%;height:295px;object-fit:cover;object-position:center 38%}
+.letter-caption{text-align:center;font:23px 'Italianno',cursive;color:#a77c3e;margin-top:4px}
+/* The flap rotates away from the viewer and stays behind the emerging portrait. */
+@keyframes liftEnvelopeFlap{0%,8%{transform:rotateX(0deg);z-index:5}52%{transform:rotateX(95deg);z-index:5}53%{z-index:2}100%{transform:rotateX(178deg);z-index:2}}
+@keyframes portraitOut{0%{opacity:0;transform:translateY(80px)}10%{opacity:1}100%{opacity:1;transform:translateY(-105px)}}
+.window[data-app="welcome"]{left:43%;top:24%;width:min(460px,33vw)}
+@media(max-width:1000px){.envelope-area{left:2%;width:33vw}.window[data-app="welcome"]{left:39%;width:39vw}}
+@media(max-width:700px){.envelope-area{left:9%;top:65px;width:78vw;height:510px}.portrait-letter{width:52%;left:24%;bottom:115px}.portrait-mat img{height:195px}.icons{top:485px!important;grid-template-columns:repeat(2,1fr)!important}.window[data-app="welcome"]{left:6%!important;top:65%!important;width:88vw!important}@keyframes portraitOut{0%{opacity:0;transform:translateY(60px)}10%{opacity:1}100%{opacity:1;transform:translateY(-90px)}}}
+@media(prefers-reduced-motion:reduce){.envelope-flap,.portrait-letter{animation:none!important}.envelope-flap{transform:rotateX(178deg);z-index:2}.portrait-letter{opacity:1;transform:translateY(-105px)}}
+@media(max-width:700px) and (prefers-reduced-motion:reduce){.portrait-letter{transform:translateY(-90px)}}
 </style></head><body><main class="desktop"><header class="topbar"><div class="brand"><img class="mini-seal seal-image" src="gold-seal.png" alt="Gold N wax seal"><strong>Nada's Golden Archive</strong></div><div class="rightbar"><button data-open="about">About</button><button data-open="contact">Contact</button><button data-open="resume">Resume</button><span id="clock">♡</span></div></header>
-<section class="desktop-title"><div class="eyebrow">A little corner of my world</div><h1>Stories, with<br><em>a golden touch.</em></h1><p>Welcome to my creative desktop. Open a folder, peek into a project, and make yourself at home.</p><div class="signature">with love, Nada ♡</div></section>
+<section class="desktop-title envelope-area" aria-label="A letter from Nada">
+  <div class="envelope-composition"><img class="envelope-closed" src="ivory-envelope.png" alt="" aria-hidden="true">
+    <div class="portrait-letter"><div class="portrait-mat"><img src="portrait.jpg" alt="Portrait of Nada"></div><div class="letter-caption">with love, Nada ♡</div></div>
+    <div class="envelope-back"></div><div class="envelope-interior" aria-hidden="true"></div>
+    <img class="envelope-flap" src="envelope-flap.png" alt="" aria-hidden="true">
+    <img class="envelope-front" src="envelope-pocket.png" alt="Ivory envelope pocket">
+  </div>
+</section>
 <nav class="icons" aria-label="Desktop folders"><button class="desktop-icon" data-open="about"><span class="folder-art rose"></span><span class="icon-label">About Me</span></button><button class="desktop-icon" data-open="projects"><span class="folder-art"></span><span class="icon-label">My Projects</span></button><button class="desktop-icon" data-open="resume"><span class="folder-art gold"></span><span class="icon-label">Resume</span></button><button class="desktop-icon" data-open="contact"><span class="folder-art sage"></span><span class="icon-label">Contact</span></button></nav>
 <div class="footnote">✦ Made with care, curiosity & a little bit of movie magic</div><nav class="dock" aria-label="Quick access"><button data-open="welcome" title="Welcome">✧</button><button data-open="about" title="About Me">♡</button><button data-open="projects" title="My Projects">▤</button><button data-open="resume" title="Resume">▧</button><button data-open="contact" title="Contact">✉</button></nav>
 <section class="window" data-app="welcome" role="dialog" aria-label="Welcome"><div class="window-head"><div class="dots"><button class="close" aria-label="Close"></button><button class="min" aria-label="Minimize"></button><button class="max" aria-label="Bring to front"></button></div><span class="filename">welcome.note</span><span>✧</span></div><div class="window-body welcome"><img class="seal-large seal-image" src="gold-seal.png" alt="Gold N wax seal"><div class="smallcaps">A note for you</div><h2>Oh, hello there!</h2><p>I'm Nada — a filmmaker and storyteller. This little desktop is my home for all the things I've made, learned, and loved along the way.</p><button class="action" data-open="about">Get to know me ♡</button></div></section>
